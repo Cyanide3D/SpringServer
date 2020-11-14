@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <style>
+        a {
+            color: #11ff00 !important;
+            text-decoration: none;
+            font-size: 30px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>ВАУ</title>
+</head>
+<body>
+
+<div th:each="wow : ${wow}">
+    <a th:href="@{/wow/{id}(id=${wow.getId()})}" th:text="${wow.getName()}">user</a>
+</div>
+<br>
+<a href="/wow/new">New</a>
+</body>
+</html>

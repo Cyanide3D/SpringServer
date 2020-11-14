@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <style>
+        a {
+            color: #11ff00 !important;
+            text-decoration: none;
+            font-size: 30px;
+        }
+        p {
+            font-size: 30px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>WowForID</title>
+</head>
+<body>
+
+<p th:text = "${wow.getName()}">VALUE</p>
+<p th:text = "${wow.getId()}">VALUE</p>
+<br>
+<a href="/wow">ALL</a>
+<br>
+<a th:href="@{/wow/{id}/edit(id=${wow.getId()})}">EDIT</a>
+
+</body>
+</html>
