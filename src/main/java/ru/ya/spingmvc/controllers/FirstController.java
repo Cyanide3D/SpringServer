@@ -48,9 +48,15 @@ public class FirstController {
         return "wow/edit";
     }
 
-    @PatchMapping("/{id}")
+    @RequestMapping(value = "/{id}", method = {RequestMethod.PATCH, RequestMethod.POST})
     public String update(@ModelAttribute("wow") WowModel wowModel, @PathVariable("id") int id) {
         wowDao.update(id, wowModel);
+        return "redirect:/wow";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        wowDao.delete(id);
         return "redirect:/wow";
     }
 }

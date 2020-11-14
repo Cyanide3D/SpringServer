@@ -22,14 +22,14 @@ public class MySpringDispatcherInit extends AbstractAnnotationConfigDispatcherSe
         return new String[]{"/"};
     }
 
-   @Override
-   public void onStartup(ServletContext aServletContext) throws ServletException {
-       super.onStartup(aServletContext);
-       registerHiddenFieldFilter(aServletContext);
-   }
+    @Override
+    public void onStartup(ServletContext aServletContext) throws ServletException {
+        super.onStartup(aServletContext);
+        registerHiddenFieldFilter(aServletContext);
+    }
 
-   private void registerHiddenFieldFilter(ServletContext aContext) {
-       aContext.addFilter("hiddenHttpMethodFilter",
-               new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
-   }
+    private void registerHiddenFieldFilter(ServletContext aContext) {
+        aContext.addFilter("hiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+    }
 }

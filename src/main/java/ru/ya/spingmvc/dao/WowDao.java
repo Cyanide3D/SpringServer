@@ -31,8 +31,13 @@ public class WowDao {
         wow.add(wowModel);
     }
 
-    public void update(int id, WowModel wowModel) {
-        WowModel wowToBeUpdated = show(id);
-        wowToBeUpdated.setName(wowModel.getName());
+    public void update(int id, WowModel updatedPerson) {
+        WowModel personToBeUpdated = show(id);
+
+        personToBeUpdated.setName(updatedPerson.getName());
+    }
+
+    public void delete(int id) {
+        wow.removeIf(p -> p.getId() == id);
     }
 }

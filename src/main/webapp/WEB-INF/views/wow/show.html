@@ -22,6 +22,10 @@
 <a href="/wow">ALL</a>
 <br>
 <a th:href="@{/wow/{id}/edit(id=${wow.getId()})}">EDIT</a>
+<br>
+<form th:method="DELETE" th:action="@{/wow/{id}(id=${wow.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
 
 </body>
 </html>
