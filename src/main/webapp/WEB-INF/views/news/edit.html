@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <meta charset="UTF-8">
+    <title>Site</title>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <h1>Site *****</h1>
+        <br>
+        <hr>
+    </header>
+    <h2>News</h2>
+    <div class="content">
+        <form th:method="PATCH" th:action="@{/news/{id}(id=${news.getId()})}" th:object="${news}">
+            <label for="name">   Enter name: </label>
+            <br>
+            <input type="text" th:field="*{name}" id="name"/>
+            <br>
+            <label for="body">   Enter body: </label>
+            <br>
+            <textarea rows="12" th:field="*{body}" cols="25" wrap="hard" id="body"></textarea>
+            <br/>
+            <input type="submit" value="Update!"/>
+        </form>
+    </div>
+    <aside>
+        <h2>Content</h2>
+        <ul>
+            <li><a href="/">Main page</a></li>
+            <li><a href="/news/new">Make news</a></li>
+        </ul>
+    </aside>
+    <footer>
+        <p>(c)Cyanide3D</p>
+    </footer>
+</div>
+</body>
+</html>

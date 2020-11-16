@@ -1,40 +1,46 @@
 package ru.ya.spingmvc.dao;
 
 import org.springframework.stereotype.Component;
-import ru.ya.spingmvc.models.WowModel;
+import ru.ya.spingmvc.models.News;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class WowDao {
-    private List<WowModel> wow;
+    private List<News> wow;
     private int WOW_COUNT;
 
     {
         wow = new ArrayList<>();
-        wow.add(new WowModel(++WOW_COUNT,"adin"));
-        wow.add(new WowModel(++WOW_COUNT,"dva"));
-        wow.add(new WowModel(++WOW_COUNT,"tryi"));
+        wow.add(new News(++WOW_COUNT,"HelloWorld!","Site under construction!"));
     }
 
-    public List<WowModel> index(){
+    public List<News> index(){
         return wow;
     }
 
-    public WowModel show(int id){
+    public News show(int id){
         return wow.stream().filter(wow->wow.getId()==id).findAny().orElse(null);
     }
 
-    public void save(WowModel wowModel) {
-        wowModel.setId(++WOW_COUNT);
-        wow.add(wowModel);
+    public News edit(int id){
+        News news = wow.stream().filter(wow->wow.getId()==id).findAny().orElse(null);
+        if (news == null) return null;
+        News newNews = new News(news.getId(),news.getName(),news.getBody().replace("<br>","\n"));
+        return newNews;
     }
 
-    public void update(int id, WowModel updatedPerson) {
-        WowModel personToBeUpdated = show(id);
+    public void save(News news) {
+        news.setId(++WOW_COUNT);
+        wow.add(news);
+    }
 
+    public void update(int id, News updatedPerson) {
+        News personToBeUpdated = show(id);
+        if (updatedPerson == null) return;
         personToBeUpdated.setName(updatedPerson.getName());
+        personToBeUpdated.setBody(updatedPerson.getBody().replace("\n","<br>"));
     }
 
     public void delete(int id) {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <meta charset="UTF-8">
+    <title>Site</title>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <h1>Site *****</h1>
+        <br>
+        <hr>
+    </header>
+    <h2>News</h2>
+    <div class="content">
+        <form th:method="POST" th:action="@{/news}" th:object="${news}">
+            <label for="name">News Name: </label>
+            <input type="text" th:field="*{name}" id="name"/>
+            <br>
+            <label for="body">News Body: </label>
+            <input type="text" th:field="*{body}" id="body"/>
+            <br>
+            <br>
+            <input type="submit" value="Create">
+        </form>
+    </div>
+    <aside>
+        <h2>Content</h2>
+        <ul>
+            <li><a href="/">Main page</a></li>
+            <li><a href="/news/new">Make news</a></li>
+        </ul>
+    </aside>
+    <footer>
+        <p>(c)Cyanide3D</p>
+    </footer>
+</div>
+</body>
+</html>

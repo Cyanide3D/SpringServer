@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <meta charset="UTF-8">
+    <title>Site</title>
+</head>
+<body>
+<div class="wrap">
+    <header>
+        <h1>Site *****</h1>
+        <br>
+        <hr>
+    </header>
+    <h2>News</h2>
+    <div class="content">
+        <div class="newslist" th:each="news : ${news}">
+            <a th:href="@{/news/{id}(id=${news.getId()})}" th:text="${news.getName()}">user</a>
+            <div class="bodynews">
+                <p th:utext="${news.getBody()}"></p>
+            </div>
+        </div>
+    </div>
+    <aside>
+        <h2>Content</h2>
+        <ul>
+            <li><a href="/">Main page</a></li>
+            <li><a href="/news/new">Make news</a></li>
+        </ul>
+    </aside>
+    <footer>
+        <p>(c)Cyanide3D</p>
+    </footer>
+</div>
+</body>
+</html>

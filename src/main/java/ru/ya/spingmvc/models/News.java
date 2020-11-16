@@ -1,14 +1,25 @@
 package ru.ya.spingmvc.models;
 
-public class WowModel {
+public class News {
     private int id;
     String name;
+    String body;
 
-    public WowModel(int id, String name) {
+    public News(int id, String name, String body) {
         this.id = id;
         this.name = name;
+        this.body = body;
+
     }
-    public WowModel() {
+    public News() {
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public int getId() {

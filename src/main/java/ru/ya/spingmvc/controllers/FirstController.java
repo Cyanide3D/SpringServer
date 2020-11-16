@@ -5,58 +5,63 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ya.spingmvc.dao.WowDao;
-import ru.ya.spingmvc.models.WowModel;
+import ru.ya.spingmvc.models.News;
 
 @Controller
-@RequestMapping("/wow")
 public class FirstController {
 
-    private final WowDao wowDao;
+    private final WowDao newsDao;
 
     @Autowired
-    public FirstController(WowDao wowDao) {
-        this.wowDao = wowDao;
+    public FirstController(WowDao newsDao) {
+        this.newsDao = newsDao;
     }
 
-    @GetMapping()
+    @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("wow", wowDao.index());
-        return "wow/index";
+        model.addAttribute("news",newsDao.index());
+        return "/index";
     }
 
-    @GetMapping("/{id}")
+//    @GetMapping("/news/shownews")
+//    public String shownews() {
+//
+//        return "news/shownews";
+//    }
+
+    @GetMapping("/news/{id}")
     public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("wow", wowDao.show(id));
-        return "wow/show";
+        model.addAttribute("news", newsDao.show(id));
+        return "news/show";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/news/new")
     public String newWow(Model model) {
-        model.addAttribute("wow", new WowModel());
-        return "wow/new";
+        model.addAttribute("news", new News());
+        return "news/new";
     }
 
-    @PostMapping()
-    public String create(@ModelAttribute("wow") WowModel wowModel) {
-        wowDao.save(wowModel);
-        return "redirect:/wow";
+    @PostMapping("/news")
+    public String create(@ModelAttribute("news") News news) {
+        newsDao.save(news);
+        return "redirect:/";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/news/{id}/edit")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("wow", wowDao.show(id));
-        return "wow/edit";
+        model.addAttribute("news", newsDao.edit(id));
+        return "news/edit";
     }
 
-    @RequestMapping(value = "/{id}", method = {RequestMethod.PATCH, RequestMethod.POST})
-    public String update(@ModelAttribute("wow") WowModel wowModel, @PathVariable("id") int id) {
-        wowDao.update(id, wowModel);
-        return "redirect:/wow";
+    @RequestMapping(value = "/news/{id}", method = {RequestMethod.PATCH,RequestMethod.POST})
+    public String update(@ModelAttribute("news") News news, @PathVariable("id") int id) {
+        newsDao.update(id, news);
+        return "redirect:/news/" + String.valueOf(id);
     }
 
-    @DeleteMapping("/{id}")
+    @RequestMapping(value = "/news/{id}/", method = {RequestMethod.DELETE,RequestMethod.POST})
     public String delete(@PathVariable("id") int id) {
-        wowDao.delete(id);
-        return "redirect:/wow";
+        newsDao.delete(id);
+        return "redirect:/";
     }
 }
