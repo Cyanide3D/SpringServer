@@ -25,6 +25,7 @@
         <h2>Content</h2>
         <ul>
             <li><a href="/">Main page</a></li>
+            <li><a th:href="@{/profile/{id}(id=${user.getId()})}">Profile</a></li>
             <li><a href="/news/new">Make news</a></li>
             <li><a href="/login/logout">Logout</a></li>
         </ul>

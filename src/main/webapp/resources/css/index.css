@@ -1,3 +1,21 @@
+.buttons {
+    float: left;
+    margin-right: 5px;
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+}
+.buttons:hover { background: rgb(53, 167, 110); }
+.buttons:active {
+    background: rgb(33,147,90);
+    box-shadow: 0 3px rgb(33,147,90) inset;
+}
+
 .wrap {
     background: rgba(82, 80, 80, 0.48);
     width: 960px;

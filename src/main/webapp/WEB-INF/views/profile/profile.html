@@ -14,17 +14,9 @@
     </header>
     <h2 class="news">News</h2>
     <div class="content">
-        <form th:method="PATCH" th:action="@{/news/{id}(id=${news.getId()})}" th:object="${news}">
-            <label for="name">   Enter name: </label>
-            <br>
-            <input type="text" th:field="*{name}" id="name"/>
-            <br>
-            <label for="body">   Enter body: </label>
-            <br>
-            <textarea rows="12" th:field="*{body}" cols="25" wrap="hard" id="body"></textarea>
-            <br/>
-            <input type="submit" value="Update!"/>
-        </form>
+        <p th:text="${user.getUsername()}"></p>
+        <br>
+        <p th:text="${user.getId()}"></p>
     </div>
     <aside>
         <h2>Content</h2>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <link rel="stylesheet" th:href="@{/css/show.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
     <meta charset="UTF-8">
     <title>Site</title>
 </head>
@@ -19,18 +19,12 @@
         <p th:utext="${news.getBody()}"/>
         <br>
         <hr>
-        <form th:method="POST" th:action="@{/news/{id}/delete(id=${news.getId()})}">
-            <input class="buttons" type="submit" value="Delete"/>
-        </form>
-        <form th:method="GET" th:action="@{/news/{id}/edit(id=${news.getId()})}">
-            <input class="buttons" type="submit" value="Edit"/>
-        </form>
     </div>
     <aside>
         <h2>Content</h2>
         <ul>
             <li><a href="/">Main page</a></li>
-            <li><a href="/news/new">Make news</a></li>
+            <li><a href="/login/">Login</a></li>
         </ul>
     </aside>
     <footer>

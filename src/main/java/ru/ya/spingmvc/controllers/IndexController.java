@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.ya.spingmvc.dao.NewsDao;
+import ru.ya.spingmvc.models.User;
 import ru.ya.spingmvc.services.LoginService;
 
 @Controller
@@ -20,13 +21,14 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String index(Model model, @CookieValue(value = "_tmp", required = false) String cookie) {
+    public String index(Model model, @CookieValue(value = "_tmp", defaultValue = "0") String cookie) {
         String view;
-        if (cookie != null){
-            view = loginService.searchId(Integer.parseInt(cookie)) ? "/authIndex" : "/index";
-        } else {
-            view = "/index";
-        }
+            if (loginService.searchId(Integer.parseInt(cookie))) {
+                view = "/authIndex";
+                model.addAttribute("user", loginService.getUser(Integer.parseInt(cookie)));
+            } else {
+                view = "/index";
+            }
         model.addAttribute("news", newsDao.index());
         return view;
     }

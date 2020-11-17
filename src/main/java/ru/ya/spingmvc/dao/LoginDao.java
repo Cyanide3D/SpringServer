@@ -13,6 +13,8 @@ public class LoginDao {
 
     public LoginDao() {
         users.add(new User(++USER_ID,"Cyainide","Cyanide3D","123qwe123"));
+        users.add(new User(++USER_ID,"Tresto","Tresto","123qwe123"));
+        users.add(new User(++USER_ID,"TEXHIK","TEXHIK","321qwe321"));
     }
 
     public List<User> list(){

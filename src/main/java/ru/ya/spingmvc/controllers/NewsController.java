@@ -6,26 +6,33 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.ya.spingmvc.dao.NewsDao;
 import ru.ya.spingmvc.models.News;
+import ru.ya.spingmvc.services.LoginService;
 
 @Controller
 @RequestMapping("/news")
 public class NewsController {
 
+    private final LoginService loginService;
     private final NewsDao newsDao;
 
     @Autowired
-    public NewsController(NewsDao newsDao) {
+    public NewsController(LoginService loginService, NewsDao newsDao) {
+        this.loginService = loginService;
         this.newsDao = newsDao;
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
+    public String show(@PathVariable("id") int id, Model model, @CookieValue(value = "_tmp", defaultValue = "0") String userId) {
         model.addAttribute("news", newsDao.show(id));
-        return "news/show";
+        if (!loginService.searchId(Integer.parseInt(userId))) return "news/show";
+        model.addAttribute("user", loginService.getUser(Integer.parseInt(userId)));
+        return "news/authShow";
     }
 
     @GetMapping("/new")
-    public String newWow(Model model) {
+    public String newWow(Model model, @CookieValue(value = "_tmp", defaultValue = "0") String id) {
+        if (!loginService.searchId(Integer.parseInt(id))) return "redirect:/";
+        model.addAttribute("user", loginService.getUser(Integer.parseInt(id)));
         model.addAttribute("news", new News());
         return "news/new";
     }
@@ -37,7 +44,9 @@ public class NewsController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    public String edit(Model model, @PathVariable("id") int id, @CookieValue(value = "_tmp", defaultValue ="0") String userId) {
+        if (!loginService.searchId(Integer.parseInt(userId))) return "redirect:/";
+        model.addAttribute("user", loginService.getUser(Integer.parseInt(userId)));
         model.addAttribute("news", newsDao.edit(id));
         return "news/edit";
     }

@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>Site</title>
 </head>
-<body>
+<body th:style="'background: url(/css/123321.jpg) no-repeat center center fixed;'">
 <div class="wrap">
     <header>
-        <h1>Site *****</h1>
+        <h1 class="headerSite">Site *****</h1>
         <br>
         <hr>
     </header>
-    <h2>News</h2>
+    <h2 class="news">News</h2>
     <div class="content">
         <form th:method="POST" th:action="@{/news}" th:object="${news}">
             <label for="name">News Name: </label>
@@ -29,7 +29,9 @@
         <h2>Content</h2>
         <ul>
             <li><a href="/">Main page</a></li>
+            <li><a th:href="@{/profile/{id}(id=${user.getId()})}">Profile</a></li>
             <li><a href="/news/new">Make news</a></li>
+            <li><a href="/login/logout">Logout</a></li>
         </ul>
     </aside>
     <footer>

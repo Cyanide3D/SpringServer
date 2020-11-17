@@ -22,7 +22,12 @@ public class LoginService {
         return authUser.getId();
     }
 
-    public boolean searchId(int id){
+    public User getUser(int id) {
+        User authUser = loginDao.list().stream().filter(user1 -> user1.getId() == id).findAny().orElse(null);
+        return authUser;
+    }
+
+    public boolean searchId(int id) {
         User authUser = loginDao.list().stream().filter(user1 -> user1.getId() == id).findAny().orElse(null);
         return authUser == null ? false : true;
     }
