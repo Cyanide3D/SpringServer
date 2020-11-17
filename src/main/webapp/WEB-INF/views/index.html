@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <title>Site</title>
 </head>
-<body>
+<body th:style="'background: url(/css/123321.jpg) no-repeat center center fixed;'">
 <div class="wrap">
     <header>
-        <h1>Site *****</h1>
+        <h1 class="headerSite">Site *****</h1>
         <br>
         <hr>
     </header>
-    <h2>News</h2>
+    <h2 class="news">News</h2>
     <div class="content">
         <div class="newslist" th:each="news : ${news}">
             <a th:href="@{/news/{id}(id=${news.getId()})}" th:text="${news.getName()}">user</a>

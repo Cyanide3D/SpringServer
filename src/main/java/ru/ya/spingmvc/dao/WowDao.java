@@ -14,6 +14,7 @@ public class WowDao {
     {
         wow = new ArrayList<>();
         wow.add(new News(++WOW_COUNT,"HelloWorld!","Site under construction!"));
+        wow.add(new News(++WOW_COUNT,"Wow!","Design too under construction!"));
     }
 
     public List<News> index(){
