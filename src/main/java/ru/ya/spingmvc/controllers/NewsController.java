@@ -1,21 +1,20 @@
 package ru.ya.spingmvc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.ya.spingmvc.dao.WowDao;
+import ru.ya.spingmvc.dao.NewsDao;
 import ru.ya.spingmvc.models.News;
 
 @Controller
 @RequestMapping("/news")
 public class NewsController {
 
-    private final WowDao newsDao;
+    private final NewsDao newsDao;
 
     @Autowired
-    public NewsController(WowDao newsDao) {
+    public NewsController(NewsDao newsDao) {
         this.newsDao = newsDao;
     }
 

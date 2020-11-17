@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class WowDao {
+public class NewsDao {
     private List<News> wow;
     private int WOW_COUNT;
 
